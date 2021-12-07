@@ -1,0 +1,33 @@
+DECLARE
+d Number;
+e number;
+cursor emp_cur is select deptno from dept;
+temp emp_cur%rowType;
+cursor emp_cur1 is select deptno from dept where deptno=10;
+temp1 emp_cur1%rowType;
+
+Begin
+dbms_output.put_line('                           EMPLOYEE SUMMARY DETAILS');
+dbms_output.put_line('-------------------------------------------------------------------------------');
+
+proc_11(d,e);
+
+dbms_output.put_line('                  Number of Employees:    '||e);
+dbms_output.put_line('                  Number of Departments:  '||d);
+open emp_cur;
+loop
+fetch emp_cur into temp;
+exit when emp_cur %notfound;
+dbms_output.put_line('                 '||temp.deptno);
+end loop;
+close emp_cur;
+dbms_output.put_line('               Enter the Department number: 10');
+dbms_output.put_line('');
+open temp1;
+END;
+/
+
+
+
+
+
